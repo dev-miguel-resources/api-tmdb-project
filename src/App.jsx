@@ -5,6 +5,7 @@ import Logo from "./components/Logo/Logo";
 import TVShowDetail from "./components/TVShowDetail/TVShowDetail";
 import { TVShowAPI } from "./api/tv-show";
 import logoImg from "./assets/images/logo.png";
+import { BACKDROP_BASE_URL } from "./config";
 import s from "./style.module.css";
 
 function App() {
@@ -17,13 +18,40 @@ function App() {
     }
   }
 
+  console.log(currentTVShow);
+
   useEffect(() => {
     fetchPopulars();
   }, []);
 
   return (
-    <div></div>
-  )
+    <div
+      className={s.main_container}
+      style={{
+        background: currentTVShow
+          ? `linear-gradient(rgba(0, 0, 0, 0.200), rgba(0, 0, 0, 0.200)),
+            url("${BACKDROP_BASE_URL}${currentTVShow.backdrop_path}") no-repeat center / cover`
+          : "black",
+      }}
+    >
+      <div className={s.header}>
+        <div className="row">
+          <div className="col-4">
+            <Logo title="WatchShows" image={logoImg} />
+          </div>
+          <div className="col-md-12 col-lg-4">
+            <SearchBar />
+          </div>
+          <div className={s.tv_show_details}>
+            {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
+          </div>
+          <div className={s.recommended_shows}>
+            {currentTVShow && <TVShowList />}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;

@@ -1,10 +1,8 @@
 import axios from "axios";
 import { BASE_URL, API_KEY_PARAM } from "../config";
-
-// RECORDAR EN LAS AYUDANTIAS QUE LES VEAN POO
+//import { FAKE_POPULARS } from "./fake_data";
 
 export class TVShowAPI {
-  
   // AXIOS
   static async fetchPopulars() {
     try {
@@ -14,5 +12,6 @@ export class TVShowAPI {
     } catch (e) {
       console.log(e);
     }
+    //return FAKE_POPULARS;
   }
 }
