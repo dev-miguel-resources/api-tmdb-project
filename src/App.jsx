@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import SearchBar from "./components/SearchBar/SearchBar";
-import TVShowList from "./components/TVShowList/TVShowList";
 import Logo from "./components/Logo/Logo";
+import SearchBar from "./components/SearchBar/SearchBar";
 import TVShowDetail from "./components/TVShowDetail/TVShowDetail";
+import TVShowList from "./components/TVShowList/TVShowList";
 import { TVShowAPI } from "./api/tv-show";
-import logoImg from "./assets/images/logo.png";
 import { BACKDROP_BASE_URL } from "./config";
+import logoImg from "./assets/images/logo.png";
 import s from "./style.module.css";
 
+// STATEFULL - CON ESTADO / COMPORTAMIENTO
 function App() {
   const [currentTVShow, setCurrentTVShow] = useState();
 
