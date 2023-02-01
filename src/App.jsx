@@ -19,6 +19,13 @@ function App() {
     }
   }
 
+  async function fetchByTitle(title) {
+    const searchResponse = await TVShowAPI.fetchByTitle(title);
+    if (searchResponse && searchResponse.length > 0) {
+      setCurrentTVShow(searchResponse[0]);
+    }
+  }
+
   console.log(currentTVShow);
 
   useEffect(() => {
@@ -41,15 +48,15 @@ function App() {
             <Logo title="WatchShows" image={logoImg} />
           </div>
           <div className="col-md-12 col-lg-4">
-            <SearchBar />
-          </div>
-          <div className={s.tv_show_details}>
-            {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
-          </div>
-          <div className={s.recommended_shows}>
-            {currentTVShow && <TVShowList />}
+            <SearchBar onSubmit={fetchByTitle} />
           </div>
         </div>
+      </div>
+      <div className={s.tv_show_details}>
+        {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
+      </div>
+      <div className={s.recommended_shows}>
+        {currentTVShow && <TVShowList />}
       </div>
     </div>
   );
